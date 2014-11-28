@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Skeleton for having partial git hooks
+
+ME=`basename $0`
+
+# Redirect output to stderr.
+exec 1>&2
+
+for file in $GIT_DIR/hooks/$ME.d/*
+do
+    if [[ -x "$file" ]]
+    then
+        exec $file
+    fi
+done
+
+
